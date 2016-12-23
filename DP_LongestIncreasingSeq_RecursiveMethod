@@ -1,0 +1,56 @@
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int lis(vector<int> a, int n, int &max_lis_len)
+{
+    if(n ==0)
+        return 1;
+        
+    /*
+    LS(n) = Length of the longest increasing subsequece which 
+            includes element A[n] as the last element
+    LS[n] = 1 + max{LS[i]} where 1<=i<n && A[n]>A[j]   
+          = 1              if no such i exists
+    */
+    int cur_lis_len = 1;
+    for(int i=0; i<n; i++)
+    {
+        //Calculate LIS for each LS(i)
+        int subprob_lis_len = lis(a,i,max_lis_len);
+        //cout<<"LS("<<i<<"): "<<subprob_lis_len<<endl;
+        if((a[n] > a[i]) && cur_lis_len < (1+subprob_lis_len)) {
+            cur_lis_len = 1 + subprob_lis_len;
+            //cout<<"Current LIS Len:"<<i<<" "<<cur_lis_len<<endl;
+        }
+        
+    }
+    
+    if(cur_lis_len > max_lis_len)
+        max_lis_len = cur_lis_len;
+    
+    return cur_lis_len;
+    
+}
+int main() {
+	//code
+	int T,N;
+	vector<int> a;
+	
+	//cin>>T;
+	cin>>N;
+	
+	int tempinp;
+	for(int i=0; i<N; i++) 
+	{
+	    cin>>tempinp;
+	    a.push_back(tempinp);
+	}
+	
+	int max_lis_len = 0;
+    lis(a,N-1,max_lis_len);
+	cout<<max_lis_len<<endl;
+	
+	return 0;
+}
