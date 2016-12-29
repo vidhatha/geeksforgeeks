@@ -122,3 +122,10 @@ int main()
  
     return 0;
 }
+
+Time Complexity:
+
+The time complexity of the above code/algorithm looks O(V^2) as there are two nested while loops. 
+If we take a closer look, we can observe that the statements in inner loop are executed O(V+E) times.
+The inner loop has push() operation which takes O(LogV) time
+So overall time complexity is O(E+V)*O(LogV) which is O((E+V)*LogV) = O(ELogV) (For a connected graph, V = O(E))
