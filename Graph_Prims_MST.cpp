@@ -43,7 +43,7 @@ void Graph::primMST(int source)
     int max_int = numeric_limits<int>::max();
     vector<int> nodeweight(V,max_int);
     
-    //create a vector to store parent array which in turn stores nonMST
+    //create a vector to store parent array which in turn stores MST
     vector<int> parent(V,-1);
     
     //To keep track of vertices included in the MST
